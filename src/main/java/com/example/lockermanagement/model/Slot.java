@@ -8,13 +8,20 @@ import lombok.NonNull;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
 public class Slot {
     private final String slotId;
     private final Size size;
     private final Locker locker;
     private Date allocationDate;
     private LockerItem lockerItem;
+
+    public Slot(@NonNull final String slotId, @NonNull final Size size, @NonNull final Locker locker) {
+        this.slotId = slotId;
+        this.size = size;
+        this.locker = locker;
+        this.lockerItem= null;
+    }
+
 
     synchronized public boolean isAvailable(){
         return this.lockerItem == null;
